@@ -1,5 +1,6 @@
 ## Tic Tac Toe realtime multiplayer game
 ### Tech tack used :: node.js,express.js,socket.io,typescript
+### Node.js version v20.16.0
 #### How to run this app
 ##### 1. clone the repo
 ##### 2. install the dependencies using ``npm install``
