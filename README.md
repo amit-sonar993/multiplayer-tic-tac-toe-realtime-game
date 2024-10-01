@@ -5,4 +5,6 @@
 ##### 2. install the dependencies using npm install
 ##### 3. now run ``npm start``
 ##### 4. open http://localhost:3000/ in your browser
+##### 5. click join button to join to a room as a x AND o
+
 
