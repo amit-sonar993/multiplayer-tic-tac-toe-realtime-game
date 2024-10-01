@@ -3,9 +3,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const gameContainer = document.getElementById("game");
   const joinButton = document.getElementById("join");
   const restartButton = document.getElementById("restart");
-  const roomDisplay = document.getElementById("room-display").querySelector("span");
-  const turnDisplay = document.getElementById("turn-display").querySelector("span");
-  const scoreDisplay = document.getElementById("score-display").querySelector("span"); // Score display
+  const roomDisplay = document
+    .getElementById("room-display")
+    .querySelector("span");
+  const turnDisplay = document
+    .getElementById("turn-display")
+    .querySelector("span");
+  const scoreDisplay = document
+    .getElementById("score-display")
+    .querySelector("span"); // Score display
+  const chatInputContainer = document
+    .getElementById("chat-box-container")
+    ?.querySelector(".chat-input-wp");
+  // const chatMsgInput = document.getElementById("chat-messages");
+  // const sendChatBtn = document.getElementById("send-chat");
 
   let currentPlayer = "X";
   let roomId = "room-1";
@@ -20,11 +31,22 @@ document.addEventListener("DOMContentLoaded", () => {
     socket.emit("restart_game", roomId);
   });
 
+  // sendChatBtn.addEventListener("click", (event) => {
+  //   console.log("chatMsg", chatMsgInput.value);
+  //   const chatMsg = chatMsgInput.value;
+
+  //   socket.emit("chat_msg_send", {
+  //     chatMsg: chatMsg,
+  //     roomId: roomId,
+  //   });
+  // });
+
   socket.on("room_joined", ({ room: roomName, playerSymbol }) => {
-    roomId = roomName
+    roomId = roomName;
     joinButton.style.display = "none";
     currentPlayer = playerSymbol;
     roomDisplay.textContent = `${roomName} as ${playerSymbol}`;
+    chatInputContainer.classList.remove("d-none");
   });
 
   socket.on("game_update", (board) => {
@@ -40,8 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
           console.log("currentTurn", currentTurn);
 
           console.log("gameActive", gameActive);
-          console.log('roomId', roomId);
-          
+          console.log("roomId", roomId);
 
           if (
             gameActive &&
@@ -63,7 +84,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   socket.on("turn_update", (nextTurn) => {
     currentTurn = nextTurn;
-    turnDisplay.textContent = nextTurn ? ` ${nextTurn}'s` : '';
+    turnDisplay.textContent = nextTurn ? ` ${nextTurn}'s` : "";
   });
 
   socket.on("game_over", ({ result, winner }) => {

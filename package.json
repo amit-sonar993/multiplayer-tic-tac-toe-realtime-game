@@ -8,7 +8,7 @@
     "build:client": "tsc --project tsconfig.client.json"
   },
   "keywords": [],
-  "author": "",
+  "author": "Amit Sonar",
   "license": "ISC",
   "description": "",
   "devDependencies": {

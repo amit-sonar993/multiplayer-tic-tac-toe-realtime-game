@@ -72,7 +72,7 @@ const handleRoomJoin = (playerRoomId: string, socket: Socket, io: Server) => {
     }
 
     console.log('roomId before joining', roomId);
-    
+
     addUserToRoom(roomId, socket.id, playerSymbol);
     socket.join(roomId);
 
@@ -94,6 +94,10 @@ const handleGameRestart = (roomId: string, io: Server) => {
     }
 }
 
+const handleChatMsgSend = (chatMsg: string, roomId: string, io: Server) => {
+
+}
+
 const handleRoomDisconnect = (socket: Socket, io: Server) => {
     const rooms = getAllRooms()
     console.log('ROOMS => ', rooms);
@@ -103,8 +107,8 @@ const handleRoomDisconnect = (socket: Socket, io: Server) => {
         io.to(roomId).emit('player_left', { message: `Player ${socket.id} has left the game.` });
     }
 
-    console.log('ROOMS after user disconnects',  rooms);
-    
+    console.log('ROOMS after user disconnects', rooms);
+
 }
 
-export { initializeRoom, handlePlayerAction, handleRoomJoin, handleRoomDisconnect, handleGameRestart };
+export { initializeRoom, handlePlayerAction, handleRoomJoin, handleRoomDisconnect, handleGameRestart, handleChatMsgSend };

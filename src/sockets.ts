@@ -1,7 +1,7 @@
 // src/sockets.ts
 
 import { Server } from 'socket.io';
-import { handleGameRestart, handlePlayerAction, handleRoomDisconnect, handleRoomJoin } from './controllers/gameController';
+import { handleChatMsgSend, handleGameRestart, handlePlayerAction, handleRoomDisconnect, handleRoomJoin } from './controllers/gameController';
 
 const setupSockets = (io: Server) => {
     io.on('connection', (socket) => {
@@ -30,6 +30,15 @@ const setupSockets = (io: Server) => {
                 console.log(`Error while handling game restart`);
             }
         });
+
+        socket.on('chat_msg_send', ({ chatMsg, roomId }) => {
+            console.log(chatMsg, roomId);
+            try {
+                handleChatMsgSend(chatMsg, roomId, io)
+            } catch (error) {
+                console.log(`erro while chat messages send`, error);
+            }
+        })
 
         socket.on('disconnect', () => {
             console.log('Player disconnected:', socket.id);
