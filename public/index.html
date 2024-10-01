@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row mb-3">
+            <div class="col">
+                <h1 class="card-title text-center text-light">Tic Tac Toe</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col col-md-4 offset-md-4">
+                <div class="card game-board-card">
+                    <div class="card-header">
+                        <div id="room-display" class="room-info">Room Name: <span></span></div>
+                        <div id="turn-display" class="turn-info">It's: <span></span> Turn</div>
+                        <div id="score-display" class="score-info">Scores: <span></span></div>
+                    </div>
+                    <div class="card-body">
+                        <div id="game" class="game-board"></div>
+                    </div>
+                    <div class="card-footer">
+                        <button id="join" class="join-button btn btn-primary">Join Room</button>
+                        <button id="restart" class="restart-button  btn btn-secondary" style="display: none;">Restart Game</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
